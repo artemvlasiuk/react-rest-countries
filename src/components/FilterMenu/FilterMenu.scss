@@ -1,0 +1,20 @@
+@import '../../App.scss';
+
+.filter-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  &--margin-top {
+    margin-top: 24px;
+
+    @include on-desktop {
+      margin-top: 48px;
+    }
+  }
+
+  @include on-desktop {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

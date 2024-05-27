@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.scss';
-
-interface Props {
-  onClick: () => void;
-  children: React.ReactNode;
-}
-
-export const Provider: React.FC<Props> = React.memo(({ onClick, children }) => (
-  <button type="button" onClick={onClick}>
-    {children}
-  </button>
-));
+import { Header } from './components/Header';
+import { init as fetchCountries } from './features/countriesSlice';
+import { useAppDispatch } from './app/hooks';
+import { Outlet } from 'react-router-dom';
 
 export const App: React.FC = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCountries());
+  }, [dispatch]);
+
   return (
-    <div className="starter">
-      <Provider onClick={() => ({})}>TodoList</Provider>
+    <div className="App">
+      <Header />
+      <Outlet />
     </div>
   );
 };
