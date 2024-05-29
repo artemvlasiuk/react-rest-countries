@@ -3,11 +3,13 @@ import './DetailsPage.scss';
 import { useAppSelector } from '../../app/hooks';
 import { useEffect, useState } from 'react';
 import { Country } from '../../types/Country';
-import { BackArrowIcon } from './BackArrowIcon';
+import { BackArrowIconLight } from './BackArrowIconLight';
+import { BackArrowIconDark } from './BackArrowIconDark';
 
 export const DetailsPage = () => {
   const { name } = useParams();
   const { countries } = useAppSelector(state => state.countries);
+  const { darkMode } = useAppSelector(state => state.theme);
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
   const navigate = useNavigate();
 
@@ -43,12 +45,15 @@ export const DetailsPage = () => {
   }, [name, countries]);
 
   return (
-    <section className="details container">
+    <section
+      className="details container"
+      data-theme={darkMode ? 'dark' : 'light'}
+    >
       <button
         className="details__back-btn details__back-btn--margin-top"
         onClick={() => navigate(-1)}
       >
-        <BackArrowIcon />
+        {darkMode ? <BackArrowIconDark /> : <BackArrowIconLight />}
         Back
       </button>
       <div className="details__wrapper details__wrapper--margin-top">

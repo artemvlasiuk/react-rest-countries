@@ -2,6 +2,24 @@
 @import 'utils/mixins';
 @import 'utils/reset';
 
+:root {
+  --text-color: hsl(200, 15%, 8%);
+  --input-color: hsl(0, 0%, 52%);
+  --background-color: hsl(0, 0%, 98%);
+  --elements-color: hsl(0, 0%, 100%);
+}
+
+[data-theme="dark"] {
+  --text-color: hsl(0, 0%, 100%);
+  --background-color: hsl(207, 26%, 17%);
+  --elements-color: hsl(209, 23%, 22%);
+}
+
+.App {
+  /* height: 100vh; */
+  background-color: var(--background-color);
+}
+
 .container {
   padding-inline: 16px;
 
