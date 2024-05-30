@@ -19,7 +19,7 @@ export const Header = () => {
   }, [theme]);
 
   return (
-    <div className="header">
+    <header className="header">
       <div className="header__wrapper container">
         <Link to="/" className="header__logo">
           Where in the world?
@@ -29,6 +29,6 @@ export const Header = () => {
           Dark Mode
         </button>
       </div>
-    </div>
+    </header>
   );
 };
