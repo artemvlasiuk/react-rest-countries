@@ -9,7 +9,7 @@ import { BackArrowIconDark } from './BackArrowIconDark';
 export const DetailsPage = () => {
   const { name } = useParams();
   const { countries } = useAppSelector(state => state.countries);
-  const { darkMode } = useAppSelector(state => state.theme);
+  const { theme } = useAppSelector(state => state.theme);
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
   const navigate = useNavigate();
 
@@ -45,15 +45,12 @@ export const DetailsPage = () => {
   }, [name, countries]);
 
   return (
-    <section
-      className="details container"
-      data-theme={darkMode ? 'dark' : 'light'}
-    >
+    <section className="details container">
       <button
         className="details__back-btn details__back-btn--margin-top"
         onClick={() => navigate(-1)}
       >
-        {darkMode ? <BackArrowIconDark /> : <BackArrowIconLight />}
+        {theme === 'light' ? <BackArrowIconLight /> : <BackArrowIconDark />}
         Back
       </button>
       <div className="details__wrapper details__wrapper--margin-top">

@@ -1,21 +1,14 @@
 import { Link } from 'react-router-dom';
 import { Country } from '../../types/Country';
 import './CountryCard.scss';
-import { useAppSelector } from '../../app/hooks';
 
 interface CountryCardProps {
   country: Country;
 }
 
 export const CountryCard: React.FC<CountryCardProps> = ({ country }) => {
-  const { darkMode } = useAppSelector(state => state.theme);
-
   return (
-    <Link
-      to={`countries/${country.name.common}`}
-      className="country"
-      data-theme={darkMode ? 'dark' : 'light'}
-    >
+    <Link to={`countries/${country.name.common}`} className="country">
       <img
         src={country.flags.svg}
         alt="Country Flag"

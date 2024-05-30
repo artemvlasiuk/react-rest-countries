@@ -10,21 +10,25 @@ const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 export const Region = () => {
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-  const { darkMode } = useAppSelector(state => state.theme);
+  const { theme } = useAppSelector(state => state.theme);
+  const [selectedRegion, setSelectedRegion] = useState<string>('');
 
   const selectRegionHandler = (region: string) => {
     dispatch(filterByRegion(region));
     setIsFilterOpen(false);
+    setSelectedRegion(region);
   };
 
   return (
-    <div className="region" data-theme={darkMode ? 'dark' : 'light'}>
+    <div className="region">
       <div
         className="region__btn"
         onClick={() => setIsFilterOpen(!isFilterOpen)}
       >
-        <div className="region__btn-text">Filter by Region</div>
-        {darkMode ? <ChevrvonIconDark /> : <ChevronIconLight />}
+        <div className="region__btn-text">
+          {selectedRegion || 'Filter by Region'}
+        </div>
+        {theme === 'light' ? <ChevronIconLight /> : <ChevrvonIconDark />}
       </div>
       {isFilterOpen && (
         <ul className="region-options">

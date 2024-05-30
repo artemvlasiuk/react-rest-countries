@@ -2,24 +2,30 @@ import { Link } from 'react-router-dom';
 import './Header.scss';
 import { MoonIconLight } from './MoonIconLight';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { toggleDarkMode } from '../../features/themeSlice';
+import { toggleTheme } from '../../features/themeSlice';
+import { MoonIconDark } from './MoonIconDark';
+import { useEffect } from 'react';
 
 export const Header = () => {
   const dispatch = useAppDispatch();
-  const { darkMode } = useAppSelector(state => state.theme);
+  const { theme } = useAppSelector(state => state.theme);
 
-  const handleThemeSwitch = () => {
-    dispatch(toggleDarkMode());
+  const toggleThemeHandler = () => {
+    dispatch(toggleTheme());
   };
 
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+  }, [theme]);
+
   return (
-    <div className="header" data-theme={darkMode ? 'dark' : 'light'}>
+    <div className="header">
       <div className="header__wrapper container">
         <Link to="/" className="header__logo">
           Where in the world?
         </Link>
-        <button className="header__theme-switcher" onClick={handleThemeSwitch}>
-          <MoonIconLight />
+        <button className="header__theme-switcher" onClick={toggleThemeHandler}>
+          {theme === 'light' ? <MoonIconLight /> : <MoonIconDark />}
           Dark Mode
         </button>
       </div>

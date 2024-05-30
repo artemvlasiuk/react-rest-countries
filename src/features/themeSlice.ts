@@ -1,23 +1,25 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
+export type ThemeTypes = 'light' | 'dark';
+
 export interface ThemeState {
-  darkMode: boolean;
+  theme: ThemeTypes;
 }
 
 const initialState: ThemeState = {
-  darkMode: false,
+  theme: 'light',
 };
 
 export const themeSlice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
-    toggleDarkMode: state => {
-      state.darkMode = !state.darkMode;
+    toggleTheme: state => {
+      state.theme = state.theme === 'light' ? 'dark' : 'light';
     },
   },
 });
 
-export const { toggleDarkMode } = themeSlice.actions;
+export const { toggleTheme } = themeSlice.actions;
 export default themeSlice.reducer;

@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { SearchIconLight } from '../FilterMenu/SearchIconLight';
 import './Search.scss';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch } from '../../app/hooks';
 import { searchByName } from '../../features/countriesSlice';
 
 export const Search = () => {
   const [query, setQuery] = useState<string>('');
   const dispatch = useAppDispatch();
-  const { darkMode } = useAppSelector(state => state.theme);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const trimmedValue = event.target.value.trim();
@@ -17,7 +16,7 @@ export const Search = () => {
   };
 
   return (
-    <div className="search" data-theme={darkMode ? 'dark' : 'light'}>
+    <div className="search">
       <SearchIconLight />
       <input
         type="text"
