@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import './Header.scss';
-import { MoonIconLight } from './MoonIconLight';
+import { MoonIcon } from './MoonIcon';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { toggleTheme } from '../../features/themeSlice';
-import { MoonIconDark } from './MoonIconDark';
 import { useEffect } from 'react';
 
 export const Header = () => {
@@ -25,7 +24,7 @@ export const Header = () => {
           Where in the world?
         </Link>
         <button className="header__theme-switcher" onClick={toggleThemeHandler}>
-          {theme === 'light' ? <MoonIconLight /> : <MoonIconDark />}
+          <MoonIcon theme={theme} />
           Dark Mode
         </button>
       </div>

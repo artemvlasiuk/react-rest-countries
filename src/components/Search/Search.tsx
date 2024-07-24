@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { SearchIconLight } from '../FilterMenu/SearchIconLight';
+import { SearchIcon } from './SearchIcon';
 import './Search.scss';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { searchByName } from '../../features/countriesSlice';
 
 export const Search = () => {
+  const { theme } = useAppSelector(state => state.theme);
   const [query, setQuery] = useState<string>('');
   const dispatch = useAppDispatch();
 
@@ -17,7 +18,7 @@ export const Search = () => {
 
   return (
     <div className="search">
-      <SearchIconLight />
+      <SearchIcon theme={theme} />
       <input
         type="text"
         name="search"

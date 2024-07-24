@@ -3,8 +3,7 @@ import './DetailsPage.scss';
 import { useAppSelector } from '../../app/hooks';
 import { useEffect, useState } from 'react';
 import { Country } from '../../types/Country';
-import { BackArrowIconLight } from './BackArrowIconLight';
-import { BackArrowIconDark } from './BackArrowIconDark';
+import { BackArrowIcon } from './BackArrowIcon';
 
 export const DetailsPage = () => {
   const { name } = useParams();
@@ -50,7 +49,7 @@ export const DetailsPage = () => {
         className="details__back-btn details__back-btn--margin-top"
         onClick={() => navigate(-1)}
       >
-        {theme === 'light' ? <BackArrowIconLight /> : <BackArrowIconDark />}
+        <BackArrowIcon theme={theme} />
         Back
       </button>
       <div className="details__wrapper details__wrapper--margin-top">
@@ -97,9 +96,9 @@ export const DetailsPage = () => {
               Border Countries:
               <ul>
                 {borders.map(country => (
-                  <li className="details__border" key={country}>
-                    <Link to={`/countries/${country}`}>{country}</Link>
-                  </li>
+                  <Link to={`/countries/${country}`} key={country}>
+                    {country}
+                  </Link>
                 ))}
               </ul>
             </div>

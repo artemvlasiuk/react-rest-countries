@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { ChevronIconLight } from '../FilterMenu/ChevronIconLight';
+import { ChevronIcon } from './ChevronIcon';
 import './Region.scss';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { filterByRegion } from '../../features/countriesSlice';
-import { ChevrvonIconDark } from '../FilterMenu/ChevronIconDark';
 
 const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
@@ -28,7 +27,7 @@ export const Region = () => {
         <div className="region__btn-text">
           {selectedRegion || 'Filter by Region'}
         </div>
-        {theme === 'light' ? <ChevronIconLight /> : <ChevrvonIconDark />}
+        <ChevronIcon theme={theme} />
       </div>
       {isFilterOpen && (
         <ul className="region-options">
