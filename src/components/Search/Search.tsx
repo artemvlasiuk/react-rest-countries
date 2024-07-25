@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SearchIcon } from './SearchIcon';
+import { SearchIcon } from '../icons/SearchIcon';
 import './Search.scss';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { searchByName } from '../../features/countriesSlice';

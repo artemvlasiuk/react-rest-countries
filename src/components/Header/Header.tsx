@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './Header.scss';
-import { MoonIcon } from './MoonIcon';
+import { MoonIcon } from '../icons/MoonIcon';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { toggleTheme } from '../../features/themeSlice';
 import { useEffect } from 'react';

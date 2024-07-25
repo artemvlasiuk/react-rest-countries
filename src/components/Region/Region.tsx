@@ -1,21 +1,28 @@
 import { useState } from 'react';
-import { ChevronIcon } from './ChevronIcon';
+import { ChevronIcon } from '../icons/ChevronIcon';
 import './Region.scss';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { filterByRegion } from '../../features/countriesSlice';
+import { filterByRegion, setRegion } from '../../features/countriesSlice';
+import { RegionType } from '../../types/Country';
 
-const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
+const regions: RegionType[] = [
+  'Africa',
+  'Americas',
+  'Asia',
+  'Europe',
+  'Oceania',
+];
 
 export const Region = () => {
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const { theme } = useAppSelector(state => state.theme);
-  const [selectedRegion, setSelectedRegion] = useState<string>('');
+  const { region } = useAppSelector(state => state.countries);
 
-  const selectRegionHandler = (region: string) => {
-    dispatch(filterByRegion(region));
+  const selectRegionHandler = (reg: RegionType) => {
+    dispatch(setRegion(reg));
+    dispatch(filterByRegion(reg));
     setIsFilterOpen(false);
-    setSelectedRegion(region);
   };
 
   return (
@@ -24,9 +31,7 @@ export const Region = () => {
         className="region__btn"
         onClick={() => setIsFilterOpen(!isFilterOpen)}
       >
-        <div className="region__btn-text">
-          {selectedRegion || 'Filter by Region'}
-        </div>
+        <div className="region__btn-text">{region || 'Filter by Region'}</div>
         <ChevronIcon theme={theme} />
       </div>
       {isFilterOpen && (

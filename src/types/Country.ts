@@ -1,3 +1,11 @@
+export type RegionType =
+  | ''
+  | 'Africa'
+  | 'Americas'
+  | 'Asia'
+  | 'Europe'
+  | 'Oceania';
+
 export interface Country {
   borders: string[];
   capital: string[];
@@ -17,7 +25,7 @@ export interface Country {
       };
     };
   };
-  region: string;
+  region: RegionType;
   subregion: string;
   languages: {
     [key: string]: string;

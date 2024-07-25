@@ -3,7 +3,7 @@ import './DetailsPage.scss';
 import { useAppSelector } from '../../app/hooks';
 import { useEffect, useState } from 'react';
 import { Country } from '../../types/Country';
-import { BackArrowIcon } from './BackArrowIcon';
+import { BackArrowIcon } from '../icons/BackArrowIcon';
 
 export const DetailsPage = () => {
   const { name } = useParams();

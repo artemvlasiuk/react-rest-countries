@@ -1,11 +1,12 @@
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Country } from '../types/Country';
+import { Country, RegionType } from '../types/Country';
 import { fetchCountries } from '../app/api';
 
 export interface CountriesState {
   originalCountries: Country[];
   countries: Country[];
+  region: RegionType;
   isLoading: boolean;
   hasError: boolean;
 }
@@ -13,6 +14,7 @@ export interface CountriesState {
 const initialState: CountriesState = {
   originalCountries: [],
   countries: [],
+  region: '',
   isLoading: false,
   hasError: false,
 };
@@ -38,6 +40,10 @@ const countriesSlice = createSlice({
           .includes(action.payload.toLowerCase()),
       );
     },
+
+    setRegion: (state, action: PayloadAction<RegionType>) => {
+      state.region = action.payload;
+    },
   },
   extraReducers: builder => {
     builder.addCase(init.pending, state => {
@@ -57,5 +63,6 @@ const countriesSlice = createSlice({
   },
 });
 
-export const { filterByRegion, searchByName } = countriesSlice.actions;
+export const { filterByRegion, searchByName, setRegion } =
+  countriesSlice.actions;
 export default countriesSlice.reducer;
